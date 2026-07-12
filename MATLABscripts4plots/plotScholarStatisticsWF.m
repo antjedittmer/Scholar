@@ -9,6 +9,11 @@ fileAIC     = fullfile(mdir, 'output','GglSch_2010_2026_Wind_Farm_Axial_Inductio
 fileWRC     = fullfile(mdir, 'output','GglSch_2010_2026_Wind_Farm_Control_Wake_Redirection_Control_Wrc.txt');
 fileKoopman = fullfile(mdir, 'output','GglSch_2010_2026_Wind_Farm_Control_Koopman.txt');
 
+dirFigureOutput = fullfile(mdir,'dirFigures');
+if exist(dirFigureOutput,'dir')~=7
+    mkdir(dirFigureOutput);
+end
+
 wf.AIC1    = parseGglSchFile(fileAIC);
 wf.WRC1    = parseGglSchFile(fileWRC);
 wf.Koopman = parseGglSchFile(fileKoopman);
@@ -50,8 +55,10 @@ set(gca,'XTickLabelRotation',45);
 set(findall(gcf,'-property','FontSize'),'FontSize',fs);
 title(titleStr,'FontSize',fs);
 
-print(gcf,'googleWordleWFAICWRC','-dpng');
-print(gcf,'googleWordleWFAICWRC','-depsc');
+filenameFigure = fullfile(dirFigureOutput,'googleWordleWFAICWRC');
+
+print(gcf,filenameFigure,'-dpng');
+print(gcf,filenameFigure,'-depsc');
 
 %% --- Figure 2: Koopman ---
 fig = figure(2);
@@ -69,8 +76,10 @@ set(gca,'XTickLabelRotation',45);
 set(findall(gcf,'-property','FontSize'),'FontSize',fs);
 title(titleStr,'FontSize',fs);
 
-print(gcf,'googleWordleWFKoopman','-dpng');
-print(gcf,'googleWordleWFKoopman','-depsc');
+filenameFigure = fullfile(dirFigureOutput,'googleWordleWFKoopman');
+
+print(gcf,filenameFigure,'-dpng');
+print(gcf,filenameFigure,'-depsc');
 
 
 %% --- Helper function ---

@@ -8,3 +8,5 @@ There are two subfolders
 
 * The folder output contains the output of runScholarSearchAll.py.
 * The folder MATLABscripts4plots contains MATLAB scripts to visualize the text files in the output folder.
+
+

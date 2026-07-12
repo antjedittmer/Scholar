@@ -9,9 +9,15 @@ fileLoadReduction = fullfile(mdir, 'output','GglSch_1995_2026_Wind_Turbine_Contr
 fileIPC           = fullfile(mdir, 'output','GglSch_1995_2026_Wind_Turbine_Control_Individual_Pitch_Control_Ipc.txt');
 fileMPC           = fullfile(mdir, 'output', 'GglSch_1995_2026_Wind_Turbine_Control_Model_Predictive_Control_Mpc.txt');
 
+dirFigureOutput = fullfile(mdir,'dirFigures');
+if exist(dirFigureOutput,'dir')~=7
+    mkdir(dirFigureOutput);
+end
+
 wt.LoadReduction = parseGglSchFile(fileLoadReduction);
 wt.IPC           = parseGglSchFile(fileIPC);
 wt.MPC           = parseGglSchFile(fileMPC);
+
 
 %% --- Label strings ---
 strLoadReduction = '"wind turbine control","load reduction"';
@@ -49,8 +55,9 @@ set(gca,'XTickLabelRotation',45);
 set(findall(gcf,'-property','FontSize'),'FontSize',fs);
 title(titleStr,'FontSize',fs);
 
-print(gcf,'googleWordleWTLoadRedIPC','-dpng');
-print(gcf,'googleWordleWTLoadRedIPC','-depsc');
+filenameFigure = fullfile(dirFigureOutput,'googleWordleWTLoadRedIPC');
+print(gcf,filenameFigure,'-dpng');
+print(gcf,filenameFigure,'-depsc');
 
 %% --- Figure 2: MPC only ---
 fig = figure(2);
@@ -68,8 +75,10 @@ set(gca,'XTickLabelRotation',45);
 set(findall(gcf,'-property','FontSize'),'FontSize',fs);
 title(titleStr,'FontSize',fs);
 
-print(gcf,'googleWordleWTMPC','-dpng'); 
-print(gcf,'googleWordleWTMPC','-depsc');
+filenameFigure = fullfile(dirFigureOutput,'googleWordleWTMPC');
+
+print(gcf,filenameFigure,'-dpng'); 
+print(gcf,filenameFigure,'-depsc');
 
 %% --- Figure 3: Load Reduction + IPC + MPC ---
 fig = figure(3);
@@ -96,8 +105,9 @@ set(gca,'XTick',y0:delta:ye,'XTickLabel',y0:delta:ye,'FontSize',fs);
 set(gca,'XTickLabelRotation',45);
 title(titleStr,'FontSize',fs);
 
-print(gcf,'agoogleWordleWTMPCIPC','-dpng');
-print(gcf,'agoogleWordleWTMPCIPC','-depsc');
+filenameFigure = fullfile(dirFigureOutput,'agoogleWordleWTMPCIPC');
+print(gcf,filenameFigure,'-dpng');
+print(gcf,filenameFigure,'-depsc');
 
 
 %% --- Helper function ---
