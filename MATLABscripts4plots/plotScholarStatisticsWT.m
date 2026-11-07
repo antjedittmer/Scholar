@@ -53,7 +53,9 @@ grid on;
 set(gca,'XTick',y0:delta:ye,'XTickLabel',y0:delta:ye,'FontSize',fs);
 set(gca,'XTickLabelRotation',45);
 set(findall(gcf,'-property','FontSize'),'FontSize',fs);
-title(titleStr,'FontSize',fs);
+if ~isappdata(groot, 'ShowThesisTitle') || getappdata(groot, 'ShowThesisTitle') % title switch of runGenerateAllThesisFigures
+    title(titleStr,'FontSize',fs);
+end
 
 filenameFigure = fullfile(dirFigureOutput,'googleWordleWTLoadRedIPC');
 print(gcf,filenameFigure,'-dpng');
@@ -73,7 +75,9 @@ grid on;
 set(gca,'XTick',y0:delta:ye,'XTickLabel',y0:delta:ye,'FontSize',fs);
 set(gca,'XTickLabelRotation',45);
 set(findall(gcf,'-property','FontSize'),'FontSize',fs);
-title(titleStr,'FontSize',fs);
+if ~isappdata(groot, 'ShowThesisTitle') || getappdata(groot, 'ShowThesisTitle') % title switch of runGenerateAllThesisFigures
+    title(titleStr,'FontSize',fs);
+end
 
 filenameFigure = fullfile(dirFigureOutput,'googleWordleWTMPC');
 
@@ -103,7 +107,9 @@ end
 set(findall(gcf,'-property','FontSize'),'FontSize',fs);
 set(gca,'XTick',y0:delta:ye,'XTickLabel',y0:delta:ye,'FontSize',fs);
 set(gca,'XTickLabelRotation',45);
-title(titleStr,'FontSize',fs);
+if ~isappdata(groot, 'ShowThesisTitle') || getappdata(groot, 'ShowThesisTitle') % title switch of runGenerateAllThesisFigures
+    title(titleStr,'FontSize',fs);
+end
 
 filenameFigure = fullfile(dirFigureOutput,'agoogleWordleWTMPCIPC');
 print(gcf,filenameFigure,'-dpng');
